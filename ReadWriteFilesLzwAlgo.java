@@ -12,13 +12,11 @@ public class ReadWriteFilesLzwAlgo extends ReadWriteFiles{
     }
     @Override
     protected
-    void writeToFileCompressedText(String fileName) {
+    void writeToFileCompressedText(String fileName, String compressedBinaString) {
          try {
             // Create a FileWriter object to write to the file
             FileWriter writer = new FileWriter(fileName);
-            for (Integer number : (ArrayList<Integer>)data) {
-                writer.write(number + " ");
-            }
+           writer.write(compressedBinaString);
             writer.close();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
@@ -30,10 +28,10 @@ public class ReadWriteFilesLzwAlgo extends ReadWriteFiles{
         // step2 : store compressed(in arrayList --> data) that contains compressed data when call method runCompress
         // step3 : write compressed text to file(filePathW)
         data = comAlgo.runCompress(readTextFromFileToCompress(filePathR));
-
-        // int numBits = Integer.toBinaryString(HandleBinary.maxElementsInIndexFromAnyTag(data)).length();
-        // HandleBinary.ToCompleteBinary(numBits, filePathW);
-        writeToFileCompressedText(filePathW);
+        // to git max bits to define overhead
+        int numBits = Integer.toBinaryString(HandleBinary.maxElementsInIndexFromAnyTag(data)).length();
+        // git binary text to store it in bin file to decrease storage --> HandleBinary.getBinary(data, numBits);
+        writeToFileCompressedText(filePathW, HandleBinary.getBinary(data, numBits));
     }
     void convertTextFromCompressToDecompress(String filePathR, String filePathW) {
         // step1 : read from file(compressed) -->about call this method ==> readTextFromFileToDecompress(filePathR)
@@ -41,18 +39,19 @@ public class ReadWriteFilesLzwAlgo extends ReadWriteFiles{
         // step3 : write deCompressed text to file(filePathW)
         String compressed = readTextFromFileToCompress(filePathR);
         String intCom = "";
-        for (int i = 0; i < compressed.length(); i++) {
-            if(compressed.charAt(i) != ' ')
-                intCom += compressed.charAt(i);
-            else{
-                if(intCom != "" && intCom != " ")data.add(Integer.parseInt(intCom));
-                intCom = "";
-            }
-        }
-        if(intCom != "" && intCom != " ")data.add(Integer.parseInt(intCom));
+        int getOverHead = Integer.parseInt(compressed.substring(0, 8), 2);
+        data = HandleBinary.getOrginal(compressed, getOverHead);
         String text = comAlgo.runDeCompress(data);
-        // System.out.println("ddecompressed : " + s);
-        // data = (ArrayList<Integer>)data;
         writeDecompressedText(filePathW, text);
     }
 }
+
+//  for (int i = 0; i < compressed.length(); i++) {
+//             if(compressed.charAt(i) != ' ')
+//                 intCom += compressed.charAt(i);
+//             else{
+//                 if(intCom != "" && intCom != " ")data.add(Integer.parseInt(intCom));
+//                 intCom = "";
+//             }
+//         }
+// if(intCom != "" && intCom != " ")data.add(Integer.parseInt(intCom));

@@ -8,6 +8,10 @@ public abstract class ReadWriteFiles<T> {
     HandlingBinary HandleBinary;
     CompressionAlgorithms comAlgo;
     protected ArrayList<T> data;
+    private String compressedBinaryText;
+    public <T> ReadWriteFiles(){
+        compressedBinaryText = "";
+    }
     final protected String readTextFromFileToCompress(String filePath){
         try {
             // StringBuilder text = new StringBuilder();
@@ -33,7 +37,7 @@ public abstract class ReadWriteFiles<T> {
             return e.getMessage();
         }
     }
-    abstract protected void writeToFileCompressedText(String fileName);
+    abstract protected void writeToFileCompressedText(String fileName, String compressedBinaryText);
     // convert Text From Decompress(read --> filePathR) To Compressed file (write in it ->> filePathW)
     abstract void convertTextFromDecompressToCompress(String filePathR, String filePathW);
     // convert Text From compress(read --> filePathR) To Decompressed file (write in it ->> filePathW)
