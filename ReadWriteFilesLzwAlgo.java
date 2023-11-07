@@ -1,5 +1,7 @@
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -49,7 +51,6 @@ public class ReadWriteFilesLzwAlgo extends ReadWriteFiles{
         int numBits = Integer.toBinaryString(HandleBinary.maxElementsInIndexFromAnyTag(data)).length();
         // git binary text to store it in bin file to decrease storage --> HandleBinary.getBinary(data, numBits);
         // HandleBinary.convertBinaryStringToBytes(HandleBinary.getBinary(data, numBits));
-        System.out.println("getBinary : " + HandleBinary.getBinary(data, numBits));
         writeToFileCompressedText(filePathW, HandleBinary.getBinary(data, numBits));
     }
     void convertTextFromCompressToDecompress(String filePathR, String filePathW) {
@@ -57,13 +58,34 @@ public class ReadWriteFilesLzwAlgo extends ReadWriteFiles{
         // step2 : store decompressed(string) when call method runDecompress
         // step3 : write deCompressed text to file(filePathW)
         String compressed = readTextFromFileToCompress(filePathR);
-        String intCom = "";
         int getOverHead = Integer.parseInt(compressed.substring(0, 8), 2);
-        data = HandleBinary.getOrginal(compressed, getOverHead);
-        String text = comAlgo.runDeCompress(data);
-        writeDecompressedText(filePathW, text);
+        System.out.println("getOverHead : " + getOverHead);
+        // System.out.println("compressed : " + compressed);
+        String intCom = "";
+        // int getOverHead = Integer.parseInt(compressed.substring(0, 8), 2);
+        // data = HandleBinary.getOrginal(compressed, getOverHead);
+        // String text = comAlgo.runDeCompress(data);
+        // writeDecompressedText(filePathW, text);
+    }
+    @Override
+    protected String ReadFromCompressedFile(String fileName) 
+    {
+        try{
+            // StringBuilder text = new StringBuilder();
+            FileReader file = new FileReader(fileName);
+            BufferedReader reader = new BufferedReader(file);
+            String line, text = "";
+            while ((line = reader.readLine()) != null) {
+                text += line;
+            }
+            return text;
+        } 
+        catch (IOException e) {
+            return e.getMessage();
+        }
     }
 }
+
 
 //  for (int i = 0; i < compressed.length(); i++) {
 //             if(compressed.charAt(i) != ' ')

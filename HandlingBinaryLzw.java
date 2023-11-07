@@ -25,7 +25,7 @@ public class HandlingBinaryLzw<T> extends HandlingBinary<T>{
         ArrayList<Integer> compressedDataIntegers = new ArrayList<>();
         for (int i = overhead; i < compressedDataBinary.length(); i+=overhead) {
             compressedDataIntegers.add(Integer.parseInt(compressedDataBinary.substring(i, i+overhead), 2));
-            System.out.println(Integer.parseInt(compressedDataBinary.substring(i, i+overhead), 2));
+            // System.out.println(Integer.parseInt(compressedDataBinary.substring(i, i+overhead), 2));
         }
         return (ArrayList<T>)compressedDataIntegers;
     }

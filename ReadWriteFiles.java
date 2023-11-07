@@ -38,6 +38,8 @@ public abstract class ReadWriteFiles<T> {
         }
     }
     abstract protected void writeToFileCompressedText(String fileName, String compressedBinaryText);
+    
+    abstract protected String ReadFromCompressedFile(String fileName);
     // convert Text From Decompress(read --> filePathR) To Compressed file (write in it ->> filePathW)
     abstract void convertTextFromDecompressToCompress(String filePathR, String filePathW);
     // convert Text From compress(read --> filePathR) To Decompressed file (write in it ->> filePathW)
