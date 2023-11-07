@@ -15,6 +15,7 @@ public abstract class HandlingBinary<T> {
     // convert any compressed normal text to binary text
     abstract <T> String getBinary(ArrayList<T>compressedData, int overhead);
     abstract <T> ArrayList<T> getOrginal(String compressedDataBinary, int overhead);
+    abstract void convertBinaryStringToBytes(String binaryString);
     
     // ex: max between 12, 4, 2 , 1;
     

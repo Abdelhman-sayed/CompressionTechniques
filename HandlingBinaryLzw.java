@@ -19,6 +19,7 @@ public class HandlingBinaryLzw<T> extends HandlingBinary<T>{
         }
         return compressedText;
     }
+    
     @Override
     <T> ArrayList<T> getOrginal(String compressedDataBinary, int overhead) {
         ArrayList<Integer> compressedDataIntegers = new ArrayList<>();
@@ -27,6 +28,14 @@ public class HandlingBinaryLzw<T> extends HandlingBinary<T>{
             System.out.println(Integer.parseInt(compressedDataBinary.substring(i, i+overhead), 2));
         }
         return (ArrayList<T>)compressedDataIntegers;
+    }
+    @Override
+    void convertBinaryStringToBytes(String binaryString) {
+        // byte b;
+        // for (int i = 0; i < binaryString.length(); i++) {
+        //     b = (byte)Integer.parseInt(binaryString.substring(0, i+8));
+        //     System.out.println("b : " + b);
+        // }
     }
 }
 // byte[] byteArray = new byte[size];
