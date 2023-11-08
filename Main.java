@@ -4,10 +4,10 @@ public class Main {
     public static void main(String[] args){
         String s3 = "", s2;
         ReadWriteFiles f = new ReadWriteFilesLzwAlgo(new LZW(), new HandlingBinaryLzw());
-        f.convertTextFromCompressToDecompress("..\\lzw.bin",
-        "..\\ff f.txt");
-        // f.convertTextFromDecompressToCompress("..\\ff f.txt",
-        //  "..\\lzw.bin");
+        // f.convertTextFromCompressToDecompress("..\\lzw.bin",
+        // "..\\ff f.txt");
+        f.convertTextFromDecompressToCompress("..\\ff f.txt",
+         "..\\lzw.bin");
         // System.out.println("dfdfdf" +  "1    fddfdf");
         // System.out.println("s2 : " + s2);
         // s2 ->65 66 65 128 128 129 131 134 130 129 66 138 139 138
@@ -36,3 +36,6 @@ public class Main {
 
 // String binaryString = "10"; // 
 //         byte decimalInteger = (byte)Integer.parseInt(binaryString, 10);
+
+
+// abdefldfldkfnclseirjpehrfdjf

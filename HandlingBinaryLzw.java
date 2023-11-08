@@ -29,13 +29,5 @@ public class HandlingBinaryLzw<T> extends HandlingBinary<T>{
         }
         return (ArrayList<T>)compressedDataIntegers;
     }
-    @Override
-    void convertBinaryStringToBytes(String binaryString) {
-        // byte b;
-        // for (int i = 0; i < binaryString.length(); i++) {
-        //     b = (byte)Integer.parseInt(binaryString.substring(0, i+8));
-        //     System.out.println("b : " + b);
-        // }
-    }
 }
 // byte[] byteArray = new byte[size];
