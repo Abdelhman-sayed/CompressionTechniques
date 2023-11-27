@@ -2,9 +2,13 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        ReadWriteFiles f = new ReadWriteFilesLzwAlgo(new LZW(), new HandlingBinaryLzw());
+//        lzw
+//        ReadWriteFiles f = new ReadWriteFilesLzwAlgo(new LZW(), new HandlingBinaryLzw());
         // f.convertTextFromDecompressToCompress("..\\ff f.txt", "..\\lzw.bin");
-        f.convertTextFromCompressToDecompress("..\\lzw.bin", "..\\ffff.txt");
+//        f.convertTextFromCompressToDecompress("..\\lzw.bin", "..\\ffff.txt");
+        Huffman ca = new Huffman();
+//        ca.
+        System.out.println(ca.compress("abaacaadaa").get(0));
     }
 }
 //  ArrayList<Integer> a = new ArrayList<Integer>();
@@ -36,3 +40,7 @@ public class Main {
 // System.out.println("s2 : " + s2);
 // s2 ->65 66 65 128 128 129 131 134 130 129 66 138 139 138
 // System.out.println(Math.log(139));
+//a 1
+//b 010
+//c 00
+//d 011

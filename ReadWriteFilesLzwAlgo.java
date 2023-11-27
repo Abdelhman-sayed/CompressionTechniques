@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class ReadWriteFilesLzwAlgo<T> extends ReadWriteFiles<T>{
     private StringBuilder append;
-
     public ReadWriteFilesLzwAlgo(CompressionAlgorithms c, HandlingBinary<T> b) {
         comAlgo = c;
         HandleBinary = b;
@@ -50,6 +49,5 @@ public class ReadWriteFilesLzwAlgo<T> extends ReadWriteFiles<T>{
         data = HandleBinary.getOrginal(compressed, overhead);
         String decompress = comAlgo.decompress(data);
         writeDecompressedText(filePathW, decompress);
-
     }
 }

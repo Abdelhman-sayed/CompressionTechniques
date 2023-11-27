@@ -21,5 +21,11 @@ public class HandlingBinaryLzw<T> extends HandlingBinary<T>{
         }
         return (ArrayList<T>)compressedDataIntegers;
     }
+
+    @Override
+    <T1> ArrayList<byte[]> getBinaryForCompressData(ArrayList<T1> compressedData, String str) {
+        return null;
+    }
+
 }
 // byte[] byteArray = new byte[size];

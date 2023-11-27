@@ -5,5 +5,5 @@ import java.util.ArrayList;
 public interface CompressionAlgorithms {
     <T> ArrayList<T> compress(String t);
     <T> String decompress(ArrayList<T>compressedData);
+
 }
-// < 12, 12121, n>

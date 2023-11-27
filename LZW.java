@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class LZW implements CompressionAlgorithms{
         }
     }
     @Override
-    public <T> ArrayList<T> compress(String t) 
+    public <T> ArrayList<T> compress(String t)
     {
         text = t;
         DictionaryForCompress = new HashMap<String, Integer>();
