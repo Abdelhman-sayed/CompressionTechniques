@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        String s3 = "", s2;
         ReadWriteFiles f = new ReadWriteFilesLzwAlgo(new LZW(), new HandlingBinaryLzw());
         // f.convertTextFromDecompressToCompress("..\\ff f.txt", "..\\lzw.bin");
         f.convertTextFromCompressToDecompress("..\\lzw.bin", "..\\ffff.txt");
