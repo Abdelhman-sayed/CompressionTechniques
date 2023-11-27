@@ -91,18 +91,4 @@ public class LZW implements CompressionAlgorithms{
         }
         return decompressData;
     }   
-    // public void printDictionary(){
-    //     for (Map.Entry<Integer, String> entry : DictionaryForDeCompress.entrySet()) {
-    //         // Iterate over the map using entrySet
-    //         int key = entry.getKey();
-    //         String value = entry.getValue();
-    //         System.out.println("Key: " + key + ", Value: " + value);
-    //     }
-    // }
-    // public void printCompressedData(){
-    //     for (int index = 0; index < compressData.size(); index++) {
-    //         System.out.print(compressData.get(index) + " ");
-    //     }
-    //     System.out.println();
-    // }
 }

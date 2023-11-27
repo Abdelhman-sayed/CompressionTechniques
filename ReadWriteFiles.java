@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,13 +9,10 @@ public abstract class ReadWriteFiles<T> {
     HandlingBinary HandleBinary;
     CompressionAlgorithms comAlgo;
     protected ArrayList<T> data;
-    private String compressedBinaryText;
     public <T> ReadWriteFiles(){
-        compressedBinaryText = "";
     }
     final protected String readTextFromFileToCompress(String filePath){
         try {
-            // StringBuilder text = new StringBuilder();
             FileReader file = new FileReader(filePath);
             BufferedReader reader = new BufferedReader(file);
             String line, text = "";
@@ -37,9 +35,25 @@ public abstract class ReadWriteFiles<T> {
             return e.getMessage();
         }
     }
-    abstract protected void writeToFileCompressedText(String fileName, String compressedBinaryText);
+    protected String ReadFromCompressedFile(String fileName) 
+    {
+       String binary = "";
+       StringBuilder binaryStringData = new StringBuilder();
+        try (FileInputStream fileInputStream = new FileInputStream(fileName)) {
+        byte[] bytes = new byte[fileInputStream.available()];
+        fileInputStream.read(bytes);
+        for (byte b : bytes) {
+            binary = String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
+            binaryStringData.append(binary);
+      } 
+    }
+        catch (IOException e) {
+            return e.getMessage();
+        }
+        return binaryStringData.toString();
+    }
+    abstract protected void writeToFileCompressedText(String fileName,  ArrayList<byte[]> dataBinaryStream);
     
-    abstract protected String ReadFromCompressedFile(String fileName);
     // convert Text From Decompress(read --> filePathR) To Compressed file (write in it ->> filePathW)
     abstract void convertTextFromDecompressToCompress(String filePathR, String filePathW);
     // convert Text From compress(read --> filePathR) To Decompressed file (write in it ->> filePathW)

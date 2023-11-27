@@ -10,20 +10,12 @@ public class HandlingBinaryLzw<T> extends HandlingBinary<T>{
         }
         return mx;
     }
-    @Override
-    <T> String getBinary(ArrayList<T>compressedData, int overhead){
-        String compressedText = "";
-        compressedText += ToCompleteBinaryWithZeros(Integer.toBinaryString(overhead), 8);
-        for (T t : compressedData) {
-            compressedText += ToCompleteBinaryWithZeros(Integer.toBinaryString((int)t), overhead);
-        }
-        return compressedText;
-    }
-    
+
     @Override
     <T> ArrayList<T> getOrginal(String compressedDataBinary, int overhead) {
         ArrayList<Integer> compressedDataIntegers = new ArrayList<>();
-        for (int i = overhead; i < compressedDataBinary.length(); i+=overhead) {
+        for (int i = 8; i < compressedDataBinary.length(); i+=overhead) {
+            // System.out.println(compressedDataBinary.substring(i, i+overhead));
             compressedDataIntegers.add(Integer.parseInt(compressedDataBinary.substring(i, i+overhead), 2));
             // System.out.println(Integer.parseInt(compressedDataBinary.substring(i, i+overhead), 2));
         }
