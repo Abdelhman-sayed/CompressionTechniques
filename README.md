@@ -1,2 +1,3 @@
 # CompressionTechniques
-Compression Techniques Implementation c++
+Compression Techniques Implementation java
+
